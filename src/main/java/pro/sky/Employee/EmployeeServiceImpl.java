@@ -1,5 +1,6 @@
 package pro.sky.Employee;
 
+import org.springframework.stereotype.Service;
 import pro.sky.Employee.Exception.EmployeeAlreadyAddedException;
 import pro.sky.Employee.Exception.EmployeeNotFoundException;
 import pro.sky.Employee.Exception.EmployeeStorageIsFullException;
@@ -7,6 +8,7 @@ import pro.sky.Employee.Exception.WrongFormatException;
 
 import java.util.*;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     public String simbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -53,9 +55,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    public void removeEmployee(Employee employee) {
+    public void removeEmployee(String lastName, String firsName) {
+        Employee employee = new Employee(lastName, firsName);
+        if (!employees.contains(employee)) {
+            throw new EmployeeNotFoundException();
+        } else {
+            employees.remove(employee);
+        }
+    }
+
+    public Employee findEmployee(String lastName, String firsName) {
+        Employee employee = new Employee(lastName, firsName);
         if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
+        return employee;
     }
 }
