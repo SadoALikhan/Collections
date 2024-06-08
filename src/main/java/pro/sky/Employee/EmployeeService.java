@@ -49,7 +49,7 @@ public class EmployeeService {
         } else if (employees.contains(employee)) {
             throw new EmployeeAlreadyAddedException();
         } else {
-            employee.getLastName().toUpperCase(a[0]);
+            employee.getLastName().toUpperCase();
             employee.getFirstName().toUpperCase();
             employees.add(employee);
         }

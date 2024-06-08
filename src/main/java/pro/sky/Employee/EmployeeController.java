@@ -32,6 +32,6 @@ public class EmployeeController {
         } catch (EmployeeAlreadyAddedException e) {
             System.out.println("Сотрудник уже числится в списке.");
         }
-        return "lastName: " + lastName.cap + ", firstName: " + firstName.toUpperCase();
+        return "lastName: " + lastName.toUpperCase() + ", firstName: " + firstName.toUpperCase();
     }
 }
