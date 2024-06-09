@@ -101,8 +101,6 @@ public class EmployeeService {
         if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
-        employee.getLastName().toUpperCase();
-        employee.getFirstName().toUpperCase();
         return employee;
     }
 }
