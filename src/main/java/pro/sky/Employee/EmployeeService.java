@@ -103,4 +103,12 @@ public class EmployeeService {
         }
         return employee;
     }
+
+    public String allEmployee() {
+        for (int i = 0; i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            System.out.println(employee.toString());
+        }
+        return
+    }
 }

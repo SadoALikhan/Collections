@@ -67,4 +67,11 @@ public class EmployeeController {
         }
         return "lastName: " + lastName.toUpperCase() + ", firstName: " + firstName.toUpperCase();
     }
+
+    @GetMapping(path = "/all")
+    public String all() {
+        String str = employeeService.allEmployee();
+        return "Список всех сотрудников: ";
+        return employeeService.allEmployee();
+    }
 }
