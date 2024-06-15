@@ -49,8 +49,6 @@ public class EmployeeService {
         } else if (employees.contains(employee)) {
             throw new EmployeeAlreadyAddedException();
         } else {
-            employee.getLastName().toUpperCase();
-            employee.getFirstName().toUpperCase();
             employees.add(employee);
         }
     }
@@ -75,8 +73,6 @@ public class EmployeeService {
         if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException();
         } else {
-            employee.getLastName().toUpperCase();
-            employee.getFirstName().toUpperCase();
             employees.remove(employee);
         }
     }
@@ -104,11 +100,7 @@ public class EmployeeService {
         return employee;
     }
 
-    public String allEmployee() {
-        for (int i = 0; i < employees.size(); i++) {
-            Employee employee = employees.get(i);
-            System.out.println(employee.toString());
-        }
-        return
+    public List<Employee> printList() {
+        return employees;
     }
 }
