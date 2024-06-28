@@ -14,17 +14,17 @@ public class EmployeeService {
     public String simbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
     private final int maxEmployee = 99;
-    private List<Employee> employees = new ArrayList<>(List.of(
-            new Employee("Иванов", "Иван"),
-            new Employee("Леонов", "Никита"),
-            new Employee("Степанов", "Алексей"),
-            new Employee("Семёнов", "Ярослав"),
-            new Employee("Максимов", "Николай"),
-            new Employee("Степанов", "Ермак"),
-            new Employee("Морозов", "Василий"),
-            new Employee("Михайлов", "Артур"),
-            new Employee("Кешелев", "Константин"),
-            new Employee("Тихонов", "Вадим")
+    private Map<String, Employee> employees = new HashMap<>(Map.of(
+            "Иванов Иван", new Employee("Иванов", "Иван"),
+            "Леонов Никита", new Employee("Леонов", "Никита"),
+            "Степанов Алексей", new Employee("Степанов", "Алексей"),
+            "Семёнов Ярослав", new Employee("Семёнов", "Ярослав"),
+            "Максимов Николай", new Employee("Максимов", "Николай"),
+            "Степанов Ермак", new Employee("Степанов", "Ермак"),
+            "Морозов Василий", new Employee("Морозов", "Василий"),
+            "Михайлов Артур", new Employee("Михайлов", "Артур"),
+            "Кешелев Константин", new Employee("Кешелев", "Константин"),
+            "Тихонов Вадим", new Employee("Тихонов", "Вадим")
     ));
 
     public void addEmployee(String lastName, String firsName) {
@@ -46,10 +46,10 @@ public class EmployeeService {
         }
         if (employees.size() == maxEmployee) {
             throw new EmployeeStorageIsFullException();
-        } else if (employees.contains(employee)) {
+        } else if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         } else {
-            employees.add(employee);
+            employees.put(employee.getFullName(), employee);
         }
     }
 
@@ -70,10 +70,10 @@ public class EmployeeService {
                 throw new WrongFormatException();
             }
         }
-        if (!employees.contains(employee)) {
+        if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException();
         } else {
-            employees.remove(employee);
+            employees.remove(employee.getFullName());
         }
     }
 
@@ -94,13 +94,13 @@ public class EmployeeService {
                 throw new WrongFormatException();
             }
         }
-        if (!employees.contains(employee)) {
+        if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException();
         }
-        return employee;
+        return employees.get(employee.getFullName());
     }
 
-    public List<Employee> printList() {
-        return employees;
+    public Collection<Employee> printList() {
+        return employees.values();
     }
 }

@@ -17,6 +17,10 @@ public class Employee {
         return firstName;
     }
 
+    public String getFullName() {
+        return lastName + " " + firstName;
+    }
+
     @Override
     public String toString() {
         return lastName + firstName;
