@@ -7,6 +7,7 @@ import pro.sky.Employee.Exception.EmployeeNotFoundException;
 import pro.sky.Employee.Exception.EmployeeStorageIsFullException;
 import pro.sky.Employee.Exception.WrongFormatException;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -66,7 +67,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/all")
-    public List<Employee> print() {
+    public Collection<Employee> print() {
         return employeeService.printList();
     }
 }
