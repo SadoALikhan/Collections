@@ -3,10 +3,14 @@ package pro.sky.Employee;
 public class Employee {
     private final String lastName;
     private final String firstName;
+    private final int department;
+    private final double salary;
 
-    public Employee(String lastName, String firstName) {
+    public Employee(String lastName, String firstName, int department, double salary) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.department = department;
+        this.salary = salary;
     }
 
     public String getLastName() {
@@ -19,6 +23,14 @@ public class Employee {
 
     public String getFullName() {
         return lastName + " " + firstName;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 
     @Override

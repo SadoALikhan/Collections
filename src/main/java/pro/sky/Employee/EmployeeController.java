@@ -1,6 +1,5 @@
 package pro.sky.Employee;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.Employee.Exception.EmployeeAlreadyAddedException;
 import pro.sky.Employee.Exception.EmployeeNotFoundException;
@@ -8,7 +7,6 @@ import pro.sky.Employee.Exception.EmployeeStorageIsFullException;
 import pro.sky.Employee.Exception.WrongFormatException;
 
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -25,7 +23,7 @@ public class EmployeeController {
         try {
             employeeService.addEmployee(lastName, firstName);
             return "lastName: " + lastName + ", firstName: " + firstName;
-        } catch ( NullPointerException e) {
+        } catch (NullPointerException e) {
             return "Одно из полей не заполнено(проверьте поля фамилия/имя).";
         } catch (WrongFormatException e) {
             return "Использован неподходящий символ(проверьте поля фамилия/имя).";
