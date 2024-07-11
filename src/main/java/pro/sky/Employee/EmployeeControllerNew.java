@@ -14,8 +14,13 @@ public class EmployeeControllerNew {
         this.employeeService = employeeService;
     }
 
+    @GetMapping("/min-salary")
+    public Employee minSalaryDepartment(@RequestParam("department") int department) {
+       return employeeService.minSalary(department);
+    }
+
     @GetMapping("/max-salary")
-    public String minSalaryDepartment(@RequestParam("department") int department) {
-        employeeService.
+    public Employee maxSalaryDepartment(@RequestParam("department") int department) {
+        return employeeService.maxSalary(department);
     }
 }
