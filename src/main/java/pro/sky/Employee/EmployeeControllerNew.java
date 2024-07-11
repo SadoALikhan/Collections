@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/departments")
 public class EmployeeControllerNew {
-    private final NewEmployeeServiceImpl employeeService;
+    private final DepartmentServiseImpl employeeService;
 
-    public EmployeeControllerNew(NewEmployeeServiceImpl employeeService) {
+    public EmployeeControllerNew(DepartmentServiseImpl employeeService) {
         this.employeeService = employeeService;
     }
 

@@ -1,6 +1,8 @@
 package pro.sky.Employee;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
     void addEmployee(String lastName, String firstName);
