@@ -11,10 +11,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/departments")
-public class EmployeeControllerNew {
-    private final DepartmentServiseImpl employeeService;
+public class DepartmentController {
+    private final DepartmentServise employeeService;
 
-    public EmployeeControllerNew(DepartmentServiseImpl employeeService) {
+    public DepartmentController(DepartmentServise employeeService) {
         this.employeeService = employeeService;
     }
 

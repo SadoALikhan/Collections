@@ -11,10 +11,10 @@ import java.util.*;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    public String simbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+    private final String simbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
     private final int maxEmployee = 99;
-    private Map<String, Employee> employees = new HashMap<>(Map.of(
+    private final Map<String, Employee> employees = new HashMap<>(Map.of(
             "Иванов Иван", new Employee("Иванов", "Иван", 2, 50_000),
             "Леонов Никита", new Employee("Леонов", "Никита", 3, 45_000),
             "Степанов Алексей", new Employee("Степанов", "Алексей", 1, 60_000),
