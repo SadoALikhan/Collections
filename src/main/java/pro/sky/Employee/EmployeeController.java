@@ -18,23 +18,24 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public Employee add(@RequestParam(value = "lastName", required = false) String lastName,
-                        @RequestParam(value = "firstName", required = false) String firstName,
-                        @RequestParam int department,
-                        @RequestParam double salary) {
-        return employeeService.addEmployee(lastName, firstName, department, salary);
+    public String add(@RequestParam("lastName") String lastName,
+                      @RequestParam("firstName") String firstName,
+                      @RequestParam("department") int department,
+                      @RequestParam("salary") double salary) {
+        Employee employee = employeeService.addEmployee(lastName, firstName, department, salary);
+        return employee.toString();
     }
 
     @GetMapping(path = "/remove")
-    public Employee remove(@RequestParam(value = "lastName", required = false) String lastName,
-                         @RequestParam(value = "firstName", required = false) String firstName) {
-        return employeeService.removeEmployee(lastName, firstName);
+    public String remove(@RequestParam(value = "lastName", required = false) String lastName,
+                           @RequestParam(value = "firstName", required = false) String firstName) {
+        return employeeService.removeEmployee(lastName, firstName).toString();
     }
 
     @GetMapping(path = "/find")
-    public Employee find(@RequestParam(value = "lastName", required = false) String lastName,
-                       @RequestParam(value = "firstName", required = false) String firstName) {
-        return employeeService.findEmployee(lastName, firstName);
+    public String find(@RequestParam(value = "lastName", required = false) String lastName,
+                         @RequestParam(value = "firstName", required = false) String firstName) {
+        return employeeService.findEmployee(lastName, firstName).toString();
     }
 
     @GetMapping("/all")
