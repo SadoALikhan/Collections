@@ -1,5 +1,7 @@
 package pro.sky.Employee;
 
+import java.util.Objects;
+
 public class Employee {
     private final String lastName;
     private final String firstName;
@@ -35,7 +37,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        return lastName + firstName;
+        return "lastName: " + lastName +
+                ", firstName: " + firstName +
+                ", department: '" + department +
+                ", salary: " + salary;
     }
 
     @Override
@@ -44,7 +49,10 @@ public class Employee {
             return false;
         }
         Employee employee = (Employee) other;
-        return lastName.equals(employee.lastName) && firstName.equals(employee.firstName);
+        return Objects.equals(firstName, employee.firstName)
+                && Objects.equals(lastName, employee.lastName)
+                && Objects.equals(department, employee.department)
+                && Objects.equals(salary, employee.salary);
     }
 
     @Override

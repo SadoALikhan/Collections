@@ -18,50 +18,23 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public String add(@RequestParam(value = "lastName", required = false) String lastName,
-                      @RequestParam(value = "firstName", required = false) String firstName) {
-        try {
-            employeeService.addEmployee(lastName, firstName);
-            return "lastName: " + lastName + ", firstName: " + firstName;
-        } catch (NullPointerException e) {
-            return "Одно из полей не заполнено(проверьте поля фамилия/имя).";
-        } catch (WrongFormatException e) {
-            return "Использован неподходящий символ(проверьте поля фамилия/имя).";
-        } catch (EmployeeStorageIsFullException e) {
-            return "Превышен лимит количества сотрудников в фирме.";
-        } catch (EmployeeAlreadyAddedException e) {
-            return "Сотрудник уже числится в списке.";
-        }
+    public Employee add(@RequestParam(value = "lastName", required = false) String lastName,
+                        @RequestParam(value = "firstName", required = false) String firstName,
+                        @RequestParam int department,
+                        @RequestParam double salary) {
+        return employeeService.addEmployee(lastName, firstName, department, salary);
     }
 
     @GetMapping(path = "/remove")
-    public String remove(@RequestParam(value = "lastName", required = false) String lastName,
+    public Employee remove(@RequestParam(value = "lastName", required = false) String lastName,
                          @RequestParam(value = "firstName", required = false) String firstName) {
-        try {
-            employeeService.removeEmployee(lastName, firstName);
-            return "lastName: " + lastName + ", firstName: " + firstName;
-        } catch (NullPointerException e) {
-            return "Одно из полей не заполнено(проверьте поля фамилия/имя).";
-        } catch (WrongFormatException e) {
-            return "Использован неподходящий символ(проверьте поля фамилия/имя).";
-        } catch (EmployeeNotFoundException e) {
-            return "Сотрудник не найден.";
-        }
+        return employeeService.removeEmployee(lastName, firstName);
     }
 
     @GetMapping(path = "/find")
-    public String find(@RequestParam(value = "lastName", required = false) String lastName,
+    public Employee find(@RequestParam(value = "lastName", required = false) String lastName,
                        @RequestParam(value = "firstName", required = false) String firstName) {
-        try {
-            employeeService.findEmployee(lastName, firstName);
-            return "lastName: " + lastName + ", firstName: " + firstName;
-        } catch (NullPointerException e) {
-            return "Одно из полей не заполнено(проверьте поля фамилия/имя).";
-        } catch (WrongFormatException e) {
-            return "Использован неподходящий символ(проверьте поля фамилия/имя).";
-        } catch (EmployeeNotFoundException e) {
-            return "Сотрудник не найден.";
-        }
+        return employeeService.findEmployee(lastName, firstName);
     }
 
     @GetMapping("/all")
