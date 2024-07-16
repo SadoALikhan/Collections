@@ -1,12 +1,23 @@
 package pro.sky.Employee;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
+import java.util.Objects;
+
+import static org.apache.commons.lang3.StringUtils.capitalize;
+
 public class Employee {
     private final String lastName;
     private final String firstName;
+    private final int department;
+    private final double salary;
 
-    public Employee(String lastName, String firstName) {
-        this.lastName = lastName;
-        this.firstName = firstName;
+    public Employee(String lastName, String firstName, int department, double salary) {
+        this.lastName = capitalize(lastName.toLowerCase());
+        this.firstName = capitalize(firstName.toLowerCase());
+        this.department = department;
+        this.salary = salary;
     }
 
     public String getLastName() {
@@ -17,9 +28,24 @@ public class Employee {
         return firstName;
     }
 
+    public String getFullName() {
+        return lastName + " " + firstName;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
     @Override
     public String toString() {
-        return lastName + firstName;
+        return "lastName: " + lastName +
+                ", firstName: " + firstName +
+                ", department: '" + department +
+                ", salary: " + salary;
     }
 
     @Override
@@ -28,7 +54,10 @@ public class Employee {
             return false;
         }
         Employee employee = (Employee) other;
-        return lastName.equals(employee.lastName) && firstName.equals(employee.firstName);
+        return Objects.equals(firstName, employee.firstName)
+                && Objects.equals(lastName, employee.lastName)
+                && Objects.equals(department, employee.department)
+                && Objects.equals(salary, employee.salary);
     }
 
     @Override
