@@ -5,4 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
 public class WrongFormatException extends RuntimeException {
+    public WrongFormatException(String message) {
+        super(message);
+    }
 }

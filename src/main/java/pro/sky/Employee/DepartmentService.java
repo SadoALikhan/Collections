@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public interface DepartmentServise {
+public interface DepartmentService {
     Employee minSalary(int department);
 
     Employee maxSalary(int department);

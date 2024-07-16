@@ -12,9 +12,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
-    private final DepartmentServise employeeService;
+    private final DepartmentService employeeService;
 
-    public DepartmentController(DepartmentServise employeeService) {
+    public DepartmentController(DepartmentService employeeService) {
         this.employeeService = employeeService;
     }
 

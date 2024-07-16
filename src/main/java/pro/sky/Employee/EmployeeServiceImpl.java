@@ -35,42 +35,40 @@ public class EmployeeServiceImpl implements EmployeeService {
         return lastName + firstName;
     }
 
-    public void check(String lastName, String firstName, int department, double salary) {
-        Employee employee = new Employee(lastName, firstName, department, salary);
-        char[] a = lastName.toCharArray();
-        char[] b = firstName.toCharArray();
-        try {
-            boolean check = employee.getLastName() == null || employee.getFirstName() == null;
-        } catch (NullPointerException e) {
-            System.out.println("Одно из полей не заполнено(проверьте поля фамилия/имя).");
+    private void checkName(String name) {
+        if ("".equals(name)) {
+            throw new WrongFormatException("Одно из полей не заполнено(проверьте поля фамилия/имя).");
         }
-        for (char d : a) {
-            try {
-                boolean checkLastName = !simbols.contains(String.valueOf(d));
-            } catch (WrongFormatException e) {
-                System.out.println("Использован неподходящий символ(проверьте поля фамилия/имя).");
-            }
-        }
-        for (char d : b) {
-            try {
-                boolean checkFirstName = !simbols.contains(String.valueOf(d));
-            } catch (WrongFormatException e) {
-                System.out.println("Использован неподходящий символ(проверьте поля фамилия/имя).");
+        for (char d : name.toCharArray()) {
+            boolean checkName = !simbols.contains(String.valueOf(d));
+            if (checkName) {
+                throw new WrongFormatException("Использован неподходящий символ(проверьте поля фамилия/имя).");
             }
         }
     }
 
+    public void check(String lastName, String firstName, int department, double salary) {
+        if (salary < 0) {
+            throw new WrongFormatException("ЗП не может быть отрицательной");
+        }
+        if (department < 1 || department > 6) {
+            throw new WrongFormatException("департамент должен быть от 1 до 5");
+        }
+        checkName(lastName);
+        checkName(firstName);
+    }
+
     @Override
     public Employee addEmployee(String lastName, String firstName, int department, double salary) {
-        String key = buildKey(lastName, firstName);
-        Employee employee = new Employee(lastName, firstName, department, salary);
         check(lastName, firstName, department, salary);
+        String key = buildKey(lastName, firstName);
         if (employees.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
         if (employees.size() >= maxEmployee) {
             throw new EmployeeStorageIsFullException();
         }
+        Employee employee = new Employee(lastName, firstName, department, salary);
         employees.put(key, employee);
         return employee;
     }
@@ -94,7 +92,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Collection<Employee> printList() {
+    public Collection<Employee> getEmployees() {
         return employees.values();
     }
 }

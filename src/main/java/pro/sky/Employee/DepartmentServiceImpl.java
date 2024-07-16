@@ -12,16 +12,16 @@ import static java.util.Comparator.comparingDouble;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-public class DepartmentServiseImpl implements DepartmentServise {
+public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeService employeeService;
 
-    public DepartmentServiseImpl(EmployeeService employeeServiceImpl) {
+    public DepartmentServiceImpl(EmployeeService employeeServiceImpl) {
         this.employeeService = employeeServiceImpl;
     }
 
     @Override
     public Employee minSalary(int department) {
-        return employeeService.printList().stream()
+        return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .min(comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
@@ -29,7 +29,7 @@ public class DepartmentServiseImpl implements DepartmentServise {
 
     @Override
     public Employee maxSalary(int department) {
-        return employeeService.printList().stream()
+        return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .max(comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
@@ -37,14 +37,14 @@ public class DepartmentServiseImpl implements DepartmentServise {
 
     @Override
     public Collection<Employee> employeesDepartment(int department) {
-        return employeeService.printList().stream()
+        return employeeService.getEmployees().stream()
                 .filter(e -> e.getDepartment() == department)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Map<Integer, List<Employee>> allEmployeesDepartments() {
-        return employeeService.printList().stream()
+        return employeeService.getEmployees().stream()
                 .collect(groupingBy(Employee::getDepartment));
     }
 }
