@@ -1,6 +1,11 @@
 package pro.sky.Employee;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
 import java.util.Objects;
+
+import static org.apache.commons.lang3.StringUtils.capitalize;
 
 public class Employee {
     private final String lastName;
@@ -9,8 +14,8 @@ public class Employee {
     private final double salary;
 
     public Employee(String lastName, String firstName, int department, double salary) {
-        this.lastName = lastName;
-        this.firstName = firstName;
+        this.lastName = capitalize(lastName.toLowerCase());
+        this.firstName = capitalize(firstName.toLowerCase());
         this.department = department;
         this.salary = salary;
     }
